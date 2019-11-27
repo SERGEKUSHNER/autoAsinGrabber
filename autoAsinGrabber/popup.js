@@ -1,4 +1,3 @@
-
 function addItem(item) {
   var list_container = document.getElementById("list-container");
   list_container.innerHTML +=
@@ -33,7 +32,6 @@ function downloadCsv(content, fileName, mimeType) {
 function loadItems() {
 
   chrome.storage.sync.get(['asins'], function (result) {
-    result['asins'].forEach((value)=>{items.push(value)});
     result['asins'] && result['asins'].forEach(addItem);
   });
 
@@ -106,8 +104,6 @@ function pasteToTriplemars() {
 function clearIds() {
   var list_container = document.getElementById("list-container");
   list_container.innerHTML = "";
-  items = [];
-
   chrome.storage.sync.set({ "asins": [] }, function () {
   });
 }
@@ -124,13 +120,8 @@ document.getElementById("custom-btn-CopyToClipboard").onclick = copyToClipboard;
 document.getElementById("custom-btn-PasteInTriplemars").onclick = pasteToTriplemars;
 document.getElementById("custom-btn-ExportToCSV").onclick = exportCsv;
 
-if(items.length === 0){
-  document.getElementById("custom-btn-Clear").style.display = 'inline';
-}else{
-  document.getElementById("custom-btn-Clear").style.display = 'none';
-}
-// document.getSelected(null, function(tab) {
-//   var code = 'window.location.reload();';
-//   chrome.tabs.executeScript(tab.id, {code: code});
-// });
-console.log('The item are', items);
+// if(items.length !== 0){
+//   document.getElementById("custom-btn-Clear").style.display = 'none';
+// }else{
+//   document.getElementById("custom-btn-Clear").style.display = 'inline';
+// }
