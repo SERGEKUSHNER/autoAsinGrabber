@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29.639" height="28.582" viewBox="0 0 29.639 28.582">
+    <defs>
+        <style>
+            .cls-1{fill:#ffb503}.cls-2{fill:#ffeb8d}.cls-3,.cls-4{fill:#02aff9;stroke:#233b69;stroke-linejoin:round;stroke-miterlimit:10}.cls-4{fill:#fff}.cls-5{fill:none}
+        </style>
+    </defs>
+    <g id="Spaceship" transform="translate(-1115 -347.7)">
+        <g id="Group_868" data-name="Group 868" transform="rotate(24 -248.663 2829.26)">
+            <path id="Path_294" d="M9.359.931L7.683 3.166l.745 2.793-2.235-1.676-2.793.745 1.676-2.235L4.331 0l2.235 1.676z" class="cls-1" data-name="Path 294" transform="translate(2.931)"/>
+            <path id="Path_295" d="M6.9 5.134l2.234-.372L10.252 2.9l.372 2.234 1.862 1.117-2.234.186L9.134 8.3l-.372-2.048z" class="cls-1" data-name="Path 295" transform="translate(5.948 2.5)"/>
+            <path id="Path_296" d="M.745 1l1.117.931 1.49-.186-.931 1.117v1.49L1.49 3.234 0 3.421l.931-.931z" class="cls-1" data-name="Path 296" transform="translate(0 .862)"/>
+        </g>
+        <circle id="Ellipse_116" cx="11" cy="11" r="11" class="cls-2" data-name="Ellipse 116" transform="translate(1115 354.282)"/>
+        <path id="Path_322" d="M9.933 5.75S5 3.2 4.3 5.4a45.134 45.134 0 0 0-1.2 6h3.417z" class="cls-3" data-name="Path 322" transform="translate(1114.9 354.282)"/>
+        <path id="Path_323" d="M15.933 12.333S19 16.6 16.7 17.4s-6 1.6-6 1.6l-.433-4.25z" class="cls-3" data-name="Path 323" transform="translate(1114.9 354.282)"/>
+        <path id="Path_324" d="M19.6 2.3S10.1-.5 6.1 11.9l2.1 2 2.1 2C23.4 11 19.6 2.3 19.6 2.3z" class="cls-4" data-name="Path 324" transform="translate(1114.9 354.282)"/>
+        <g id="Group_1003" data-name="Group 1003" transform="rotate(-135 1119.566 371.886)">
+            <path id="Path_338" d="M5.338-.469s-3.694-.92-5.778 4.06l.964.95.948.961C6.6 3.006 5.338-.469 5.338-.469z" class="cls-4" data-name="Path 338" transform="rotate(-45 1008.057 -1160.743)"/>
+            <path id="Path_339" d="M4.278-1.313S2-1.61.278 1.281l.75.766.688.641C4.84.625 4.278-1.313 4.278-1.313z" class="cls-1" data-name="Path 339" transform="rotate(-45 1010.79 -1161.688)"/>
+        </g>
+        <circle id="Ellipse_117" cx="1.5" cy="1.5" r="1.5" class="cls-4" data-name="Ellipse 117" transform="translate(1129.5 358.682)"/>
+        <path id="Line_181" d="M6.3 0L0 6.5" class="cls-4" data-name="Line 181" transform="translate(1122.101 363.082)"/>
+        <path id="Rectangle_419" d="M0 0h22v22H0z" class="cls-5" data-name="Rectangle 419" transform="translate(1115 354.282)"/>
+    </g>
+</svg>

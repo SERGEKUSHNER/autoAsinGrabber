@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+
+      <div class="row">
+        <div class="col-2 col-md-2">
+          <div>
+            </span><span type="space-ship" size="20"
+                         class="css-3jmnh0-IconSvg e17d1iu71 custom-icon-header"
+                         style="margin-right: 7px;"></span>
+          </div>
+        </div>
+        <div class="col-10 col-md-10 ">
+          <div class="m-2">
+            <p>Auto ASIN Grabber</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="ant-collapse" id="list-container">
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <button class="custom-btn-GetherIds mr-1 mb-1" id="custom-btn-GetherIds">
+        <span>Gether Ids</span><span type="space-ship" size="20"
+                                     class="css-3jmnh0-IconSvg e17d1iu71 custom-icon2"
+                                     style="margin-left: 7px;"></span>
+      </button>
+      <button class="custom-btn-PasteInTriplemars mb-1 mr-1" id="custom-btn-PasteInTriplemars">
+        <span>Paste In Triplemars</span><span type="space-ship" size="20"
+                                              class="css-3jmnh0-IconSvg e17d1iu71 custom-icon"
+                                              style="margin-left: 7px;"></span>
+      </button>
+      <div data-bind = "visible: myValues().length > 0">
+      <button class="custom-btn-CopyToClipboard" id="custom-btn-CopyToClipboard">
+        <span>Copy to Clipboard</span>
+      </button>
+      <button class="custom-btn-ExportToCSV mr-1" id="custom-btn-ExportToCSV">
+        <span>Export to CSV</span>
+      </button>
+      <button class="custom-btn-Clear" id="custom-btn-Clear">
+        <span>Clear</span>
+      </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
