@@ -4,8 +4,8 @@
   "description": "Auto ASIN Grabber!",
   "permissions": [ "declarativeContent", "storage", "activeTab", "<all_urls>" ],
   "background": {
-    "scripts": [ "background.js" ],
-    "persistent": false
+    "scripts": [ "background.js", "event_script.js" ],
+    "persistent": true
   },
   "content_scripts": [
     {
@@ -28,5 +28,16 @@
     "48": "images/get_started48.png",
     "128": "images/get_started128.png"
   },
+  "commands" : {
+    "GetItems" : {
+      "suggested_key" : {"default" : "Alt+1"},
+      "description" : "Get Items"
+    },
+    "PasteItems" : {
+      "suggested_key" : {"default" : "Alt+2"},
+      "description" : "Paste Items"
+    }
+  },
+
   "manifest_version": 2
 }

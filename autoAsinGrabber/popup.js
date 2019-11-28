@@ -56,7 +56,7 @@ function showButtons() {
     // list
     chrome.storage.sync.get(['asins'], function (result) {
         console.log('hello hello', result['asins']);
-        if (result['asins'].length === 0) {
+        if (result['asins'] && result['asins'].length === 0) {
             document.getElementById("custom-btn-Clear").style.display = 'none';
             document.getElementById("custom-btn-CopyToClipboard").style.display = 'none';
             document.getElementById("custom-btn-ExportToCSV").style.display = 'none';
