@@ -8,24 +8,47 @@ chrome.runtime.onMessage.addListener(
       setNativeValue(textarea, request.data);
       textarea.dispatchEvent(new Event('input', { bubbles: true }));
     }
-    // sendResponse(1);
   });
 
 function setNativeValue(element, value) {
   const prototype = Object.getPrototypeOf(element);
   const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
 
-    prototypeValueSetter.call(element, value);
+  prototypeValueSetter.call(element, value);
 }
 
 function getIds() {
-    var asinsElements = document.querySelectorAll('[data-asin]');
-    var asins = [];
-    for (var asinElement of asinsElements) {
-        var asin = asinElement.getAttribute("data-asin");
-        if (asin) {
-            asins.push(asin);
-        }
+  // classic serach
+  var asinsElements = document.getElementsByClassName("s-result-list");
+  var asins = [];
+  for (var asinElement of asinsElements) {
+    let asin = asinElement.getAttribute("data-asin");
+    if (asin) {
+      asins.push(asin);
     }
-    return asins;
+  }
+  // prime
+  var primeElements = document.querySelectorAll("li.style__itemOuter__2dxew");
+  for (var primeElement of primeElements) {
+    let asin = primeElement.innerHTML.match("(?:[/dp/]|$)(B[A-Z0-9]{9})");
+    if (asin) {
+      asins.push(asin.find(e => e.indexOf("/") === -1));
+    }
+  }
+
+  // Black Friday
+  var bfElements = document.querySelectorAll("div.dealDetailContainer");
+  bfElements.forEach(e => {
+    let asin = e.innerHTML.match("(?:[/dp/]|$)(B[A-Z0-9]{9})");
+    if (asin) {
+      asins.push(asin.find(e => e.indexOf("/") === -1));
+    }
+  });
+
+
+  return asins;
+}
+
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
 }
