@@ -1,8 +1,17 @@
 function addItem(item) {
+
   var list_container = document.getElementById("list-container");
   list_container.innerHTML +=
     `<div class="ant-collapse-item">
-      <div class="ant-collapse-header" role="button" tabindex="0" aria-expanded="false">` + item + `</div>
+             <div class="row">
+                <div class="col-6">
+                  <div class="ant-collapse-header" role="button" tabindex="0" aria-expanded="false"> `+ item + `</div>
+                </div>
+                 <div class="col-6">
+                 <img src="http://images.amazon.com/images/P/`+ item + `.01.20TTZZZZ.jpg"  height="42" width="42">
+                </div>
+         </div>   
+    
     </div>`;
 }
 
@@ -87,15 +96,14 @@ function findIds() {
 
 function copyToClipboard() {
   chrome.storage.sync.get(['asins'], function (result) {
-    console.log(result)
+    console.log(result);
     const el = document.createElement('textarea');
-    el.value = result['asins'] && result['asins'].join(", ");
+    el.value = result['asins'] && result['asins'].join("\n ");
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
   });
-
 }
 
 function pasteToTriplemars() {
@@ -103,7 +111,7 @@ function pasteToTriplemars() {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {
         action: "paste_ids",
-        data: result['asins'] && result['asins'].join(", ")
+        data: result['asins'] && result['asins'].join("/n ")
       }, function (response) {
 
       });
@@ -122,7 +130,7 @@ function clearIds() {
 
 function exportCsv() {
   chrome.storage.sync.get(['asins'], function (result) {
-    downloadCsv(result['asins'] && result['asins'].join(", "), "dowload.csv", "text/csv");
+    downloadCsv(result['asins'] && result['asins'].join("\n "), "dowload.csv", "text/csv");
   });
 }
 

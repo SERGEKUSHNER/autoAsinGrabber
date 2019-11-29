@@ -1478,3 +1478,7 @@ a.ant-btn-sm {
     overflow: scroll;
     height: 300px;
 }
+
+span.icon {
+    font-family: FontAwesome;
+}

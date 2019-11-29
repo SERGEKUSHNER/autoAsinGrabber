@@ -10,14 +10,17 @@ chrome.runtime.onMessage.addListener(
     }
   });
 
+
 function setNativeValue(element, value) {
-  const prototype = Object.getPrototypeOf(element);
-  const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+    const prototype = Object.getPrototypeOf(element);
+    const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
 
   prototypeValueSetter.call(element, value);
 }
 
+// first functionality
 function getIds() {
+
   // classic serach
   var asinsElements = document.getElementsByClassName("s-result-list");
   var asins = [];
@@ -52,3 +55,4 @@ function getIds() {
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
 }
+
