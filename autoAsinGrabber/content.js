@@ -10,49 +10,44 @@ chrome.runtime.onMessage.addListener(
     }
   });
 
-
 function setNativeValue(element, value) {
-    const prototype = Object.getPrototypeOf(element);
-    const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+  const prototype = Object.getPrototypeOf(element);
+  const prototypeValueSetter = Object.getOwnPropertyDescriptor(prototype, 'value').set;
 
   prototypeValueSetter.call(element, value);
 }
 
-// first functionality
 function getIds() {
-
-  // classic serach
-  var asinsElements = document.getElementsByClassName("s-result-list");
   var asins = [];
-  for (var asinElement of asinsElements) {
-    let asin = asinElement.getAttribute("data-asin");
-    if (asin) {
-      asins.push(asin);
-    }
-  }
+  // classic serach
+  var classicAsins = getIdsBySelector(".s-result-list");
+  asins = asins.concat(classicAsins);
+
   // prime
-  var primeElements = document.querySelectorAll("li.style__itemOuter__2dxew");
-  for (var primeElement of primeElements) {
-    let asin = primeElement.innerHTML.match("(?:[/dp/]|$)(B[A-Z0-9]{9})");
-    if (asin) {
-      asins.push(asin.find(e => e.indexOf("/") === -1));
-    }
-  }
+  var primeAsins = getIdsBySelector("li.style__itemOuter__2dxew");
+  asins = asins.concat(primeAsins);
 
   // Black Friday
-  var bfElements = document.querySelectorAll("div.dealDetailContainer");
-  bfElements.forEach(e => {
-    let asin = e.innerHTML.match("(?:[/dp/]|$)(B[A-Z0-9]{9})");
-    if (asin) {
-      asins.push(asin.find(e => e.indexOf("/") === -1));
-    }
-  });
-
-
+  var bfAsins = getIdsBySelector("div.dealDetailContainer");
+  asins = asins.concat(bfAsins);
   return asins;
 }
 
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
+}
+
+function getIdsBySelector(container) {
+  var asins = [];
+  var elements = document.querySelectorAll(container);
+  elements.forEach(e => {
+    let asin = e.innerHTML.match(/(?:[/dp/]|$)(B[A-Z0-9]{9})/g);
+    if (asin) {
+      var removedDuplicatesAsins = asin.filter(onlyUnique);
+      var removedSlash = removedDuplicatesAsins.map(e => e.replace("/", ""));
+      asins = asins.concat(removedSlash);
+    }
+  });
+  return asins;
 }
 

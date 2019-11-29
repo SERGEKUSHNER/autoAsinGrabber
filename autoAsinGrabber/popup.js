@@ -46,6 +46,10 @@ function loadItems() {
 
 loadItems();
 
+function showNoOfEntries(results) {
+  document.getElementById("noOfEntries").innerHTML = results.length + " Results";
+}
+
 function showButtons() {
   // url
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
@@ -64,7 +68,7 @@ function showButtons() {
   });
   // list
   chrome.storage.sync.get(['asins'], function (result) {
-    console.log('hello hello', result['asins']);
+     showNoOfEntries(result['asins']);
     if (result['asins'] && result['asins'].length === 0) {
       document.getElementById("custom-btn-Clear").style.display = 'none';
       document.getElementById("custom-btn-CopyToClipboard").style.display = 'none';
