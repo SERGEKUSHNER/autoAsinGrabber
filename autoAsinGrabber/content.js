@@ -46,4 +46,3 @@ function getIds() {
 //4th functionality
 // document.querySelectorAll("li.a-carousel-card")
 // https://www.amazon.com/Coupons/b?ie=UTF8&node=2231352011
-
