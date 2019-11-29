@@ -8,7 +8,8 @@ function addItem(item) {
                   <div class="ant-collapse-header" role="button" tabindex="0" aria-expanded="false"> `+ item + `</div>
                 </div>
                  <div class="col-6">
-                 <img src="http://images.amazon.com/images/P/`+ item + `.01.20TTZZZZ.jpg"  height="42" width="42">
+                    <img src="http://images.amazon.com/images/P/`+ item +`.01.20TTZZZZ.jpg"  height="42" width="42">
+                     <i class="fa fa-times"></i>   
                 </div>
          </div>   
     
@@ -85,17 +86,18 @@ function showButtons() {
 
 // events
 function findIds() {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "grab_ids" }, function (response) {
-      response.forEach(addItem);
-      chrome.storage.sync.get(['asins'], function (result) {
-        result['asins'] && result['asins'].forEach(r => response.push(r));
-        chrome.storage.sync.set({ "asins": response }, function () {
-          showButtons();
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {action: "grab_ids"}, function (response) {
+            asinsResponse = response.asins;
+            response.forEach(addItem);
+            chrome.storage.sync.get(['asins'], function (result) {
+                result['asins'] && result['asins'].forEach(r => response.push(r));
+                chrome.storage.sync.set({"asins": response}, function () {
+                    showButtons();
+                });
+            });
         });
       });
-    });
-  });
 }
 
 function copyToClipboard() {
