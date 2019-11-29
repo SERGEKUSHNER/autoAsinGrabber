@@ -1,19 +1,17 @@
-function addItem(item) {
-
-  var list_container = document.getElementById("list-container");
-  list_container.innerHTML +=
-    `<div class="ant-collapse-item">
-             <div class="row">
-                <div class="col-6">
-                  <div class="ant-collapse-header" role="button" tabindex="0" aria-expanded="false"> `+ item + `</div>
-                </div>
-                 <div class="col-6">
-                    <img src="http://images.amazon.com/images/P/`+ item +`.01.20TTZZZZ.jpg"  height="42" width="42">
-                     <i class="fa fa-times"></i>   
-                </div>
-         </div>   
-    
-    </div>`;
+// events
+function findIds() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "grab_ids" }, function (response) {
+      asinsResponse = response.asins;
+      response.forEach(addItem);
+      chrome.storage.sync.get(['asins'], function (result) {
+        result['asins'] && result['asins'].forEach(r => response.push(r));
+        chrome.storage.sync.set({ "asins": response }, function () {
+          showButtons();
+        });
+      });
+    });
+  });
 }
 
 function downloadCsv(content, fileName, mimeType) {
@@ -35,69 +33,6 @@ function downloadCsv(content, fileName, mimeType) {
   } else {
     location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
   }
-}
-
-// onload
-function loadItems() {
-  chrome.storage.sync.get(['asins'], function (result) {
-    result['asins'] && result['asins'].forEach(addItem);
-  });
-  showButtons();
-}
-
-loadItems();
-
-function showNoOfEntries(results) {
-  document.getElementById("noOfEntries").innerHTML = results.length + " Results";
-}
-
-function showButtons() {
-  // url
-  chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-    var url = tabs[0].url;
-    if (url.indexOf('amazon') !== -1) {
-      document.getElementById("custom-btn-GetherIds").style.display = 'inline';
-    } else {
-      document.getElementById("custom-btn-GetherIds").style.display = 'none';
-
-    }
-    if (url.indexOf('console.triplemars') !== -1) {
-      document.getElementById("custom-btn-PasteInTriplemars").style.display = 'inline';
-    } else {
-      document.getElementById("custom-btn-PasteInTriplemars").style.display = 'none';
-    }
-  });
-  // list
-  chrome.storage.sync.get(['asins'], function (result) {
-     showNoOfEntries(result['asins']);
-    if (result['asins'] && result['asins'].length === 0) {
-      document.getElementById("custom-btn-Clear").style.display = 'none';
-      document.getElementById("custom-btn-CopyToClipboard").style.display = 'none';
-      document.getElementById("custom-btn-ExportToCSV").style.display = 'none';
-      document.getElementById("custom-btn-PasteInTriplemars").style.display = 'none';
-    } else {
-      document.getElementById("custom-btn-Clear").style.display = 'inline';
-      document.getElementById("custom-btn-CopyToClipboard").style.display = 'inline';
-      document.getElementById("custom-btn-ExportToCSV").style.display = 'inline';
-
-    }
-  });
-}
-
-// events
-function findIds() {
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {action: "grab_ids"}, function (response) {
-            asinsResponse = response.asins;
-            response.forEach(addItem);
-            chrome.storage.sync.get(['asins'], function (result) {
-                result['asins'] && result['asins'].forEach(r => response.push(r));
-                chrome.storage.sync.set({"asins": response}, function () {
-                    showButtons();
-                });
-            });
-        });
-      });
 }
 
 function copyToClipboard() {
@@ -145,5 +80,86 @@ document.getElementById("custom-btn-Clear").onclick = clearIds;
 document.getElementById("custom-btn-CopyToClipboard").onclick = copyToClipboard;
 document.getElementById("custom-btn-PasteInTriplemars").onclick = pasteToTriplemars;
 document.getElementById("custom-btn-ExportToCSV").onclick = exportCsv;
+loadItems();
 
 
+function addItem(item, index) {
+  var list_container = document.getElementById("list-container");
+  list_container.innerHTML +=
+    `<div class="ant-collapse-item">
+             <div class="row">
+               <div class="col-2">
+                  `+ (index + 1) + `
+                </div>
+                <div class="col-5"><a href="https://www.amazon.com/item/dp/`+ item + `" target="_blank">
+                   `+ item + `
+                </a></div>
+                 <div class="col-3">
+                    <img src="http://images.amazon.com/images/P/`+ item + `.01.20TTZZZZ.jpg"  height="42" width="42">
+                </div>
+                <div class="col-2" id="x`+ index + `">
+                     <i class="fa fa-times clickable-icon"></i>   
+                </div>
+         </div>   
+    
+    </div>`;
+  setTimeout(() => {
+    document.getElementById("x" + index).onclick = () => { removeItem(index); };
+  }, 0);
+}
+
+function removeItem(index) {
+  chrome.storage.sync.get(['asins'], function (result) {
+    if (result['asins'])
+      result['asins'].splice(index, 1);
+    chrome.storage.sync.set({ "asins": result['asins'] }, function () {
+      loadItems();
+    });
+  });
+}
+
+function showButtons() {
+  // url
+  chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+    var url = tabs[0].url;
+    if (url.indexOf('amazon') !== -1) {
+      document.getElementById("custom-btn-GetherIds").style.display = 'inline';
+    } else {
+      document.getElementById("custom-btn-GetherIds").style.display = 'none';
+
+    }
+    if (url.indexOf('console.triplemars') !== -1) {
+      document.getElementById("custom-btn-PasteInTriplemars").style.display = 'inline';
+    } else {
+      document.getElementById("custom-btn-PasteInTriplemars").style.display = 'none';
+    }
+  });
+  // list
+  chrome.storage.sync.get(['asins'], function (result) {
+    showNoOfEntries(result['asins']);
+    if (result['asins'] && result['asins'].length === 0) {
+      document.getElementById("custom-btn-Clear").style.display = 'none';
+      document.getElementById("custom-btn-CopyToClipboard").style.display = 'none';
+      document.getElementById("custom-btn-ExportToCSV").style.display = 'none';
+      document.getElementById("custom-btn-PasteInTriplemars").style.display = 'none';
+    } else {
+      document.getElementById("custom-btn-Clear").style.display = 'inline';
+      document.getElementById("custom-btn-CopyToClipboard").style.display = 'inline';
+      document.getElementById("custom-btn-ExportToCSV").style.display = 'inline';
+
+    }
+  });
+}
+
+function loadItems() {
+  var list_container = document.getElementById("list-container");
+  list_container.innerHTML = "";
+  chrome.storage.sync.get(['asins'], function (result) {
+    result['asins'] && result['asins'].forEach(addItem);
+  });
+  showButtons();
+}
+
+function showNoOfEntries(results) {
+  document.getElementById("noOfEntries").innerHTML = results.length + " Results";
+}

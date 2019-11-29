@@ -1175,6 +1175,7 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
+
 .custom-btn-GetherIds {
     line-height: 1.5;
     display: inline-block;
@@ -1196,6 +1197,7 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
+
 .custom-btn-GetherIds {
     line-height: 1.5;
     display: inline-block;
@@ -1217,6 +1219,7 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
+
 .custom-btn-PasteInTriplemars {
     line-height: 1.5;
     display: inline-block;
@@ -1238,6 +1241,7 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
+
 .custom-btn-CopyToClipboard {
     line-height: 1.5;
     display: inline-block;
@@ -1259,6 +1263,7 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
+
 .custom-btn-ExportToCSV {
     line-height: 1.5;
     display: inline-block;
@@ -1280,6 +1285,7 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
+
 .custom-btn-Clear {
     line-height: 1.5;
     display: inline-block;
@@ -1299,19 +1305,19 @@ a.ant-btn-sm {
     position: relative;
     border-color: #0070ba;
     background-color: white;
-    color:  #0070ba;
+    color: #0070ba;
 }
 
 
-    .custom-btn:hover {
-        border-color: #0070ba;
-        background-color: #0070ba;
-        color: white;
-    }
+.custom-btn:hover {
+    border-color: #0070ba;
+    background-color: #0070ba;
+    color: white;
+}
 
-        .custom-btn:hover .custom-icon2 {
-            background-color: white;
-        }
+    .custom-btn:hover .custom-icon2 {
+        background-color: white;
+    }
 
 .custom-icon {
     width: 20px;
@@ -1365,6 +1371,7 @@ a.ant-btn-sm {
 
     .ant-collapse > .ant-collapse-item {
         border-bottom: 1px solid #d9d9d9;
+        padding: 0 1.25rem;
     }
 
         .ant-collapse > .ant-collapse-item:last-child,
@@ -1477,8 +1484,22 @@ a.ant-btn-sm {
 .card-body {
     overflow: scroll;
     height: 300px;
+    padding: 0 !important;
 }
 
 span.icon {
     font-family: FontAwesome;
+}
+
+.ant-collapse-item > div > div {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.ant-collapse-item:nth-child(2n) {
+    background-color: lightgrey;
+}
+
+.clickable-icon {
+    cursor: pointer;
 }
