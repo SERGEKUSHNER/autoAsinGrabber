@@ -1307,8 +1307,9 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
-
-
+.showIf {
+    display: inline-block;
+}
 .custom-btn:hover {
     border-color: #0070ba;
     background-color: #0070ba;
