@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/popup.html" beforeDir="false" afterPath="$PROJECT_DIR$/popup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/popup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +58,7 @@
       <workItem from="1574797768643" duration="4676000" />
       <workItem from="1574839938020" duration="45819000" />
       <workItem from="1575020278638" duration="13835000" />
-      <workItem from="1575281506808" duration="14940000" />
+      <workItem from="1575281506808" duration="20608000" />
     </task>
     <servers />
   </component>

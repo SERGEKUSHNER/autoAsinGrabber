@@ -187,3 +187,20 @@ function loadItems() {
 function showNoOfEntries(results) {
     document.getElementById("noOfEntries").innerHTML = results.length + " Results";
 }
+
+var e = document.getElementById('custom-btn-GetherIds');
+e.onmouseover = function() {
+    document.getElementById('getIdsPopup').style.display = 'block';
+}
+e.onmouseout = function() {
+    document.getElementById('getIdsPopup').style.display = 'none';
+}
+
+
+var f = document.getElementById('custom-btn-PasteInTriplemars');
+f.onmouseover = function() {
+    document.getElementById('PasteInTripleMarsPopup').style.display = 'block';
+}
+f.onmouseout = function() {
+    document.getElementById('PasteInTripleMarsPopup').style.display = 'none';
+}
