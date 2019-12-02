@@ -1,15 +1,12 @@
 // events
-items = [];
 function findIds() {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { action: "grab_ids" }, function (response) {
-      items = items.concat(response);
-      console.log(items);
       asinsResponse = response.asins;
       response.forEach(addItem);
       chrome.storage.sync.get(['asins'], function (result) {
         result['asins'] && result['asins'].forEach(r => response.push(r));
-        chrome.storage.sync.set({ "asins": items }, function () {
+        chrome.storage.sync.set({ "asins": response }, function () {
           showButtons();
         });
       });
@@ -69,7 +66,6 @@ function clearIds() {
   var list_container = document.getElementById("list-container");
   list_container.innerHTML = "";
   EXP_index = -1;
-  items = [];
   chrome.storage.sync.set({ "asins": [] }, function () {
     showButtons();
   });
@@ -187,21 +183,4 @@ function loadItems() {
 
 function showNoOfEntries(results) {
   document.getElementById("noOfEntries").innerHTML = results.length + " Results";
-}
-
-var e = document.getElementById('custom-btn-GetherIds');
-e.onmouseover = function() {
-    document.getElementById('getIdsPopup').style.display = 'block';
-}
-e.onmouseout = function() {
-    document.getElementById('getIdsPopup').style.display = 'none';
-}
-
-
-var f = document.getElementById('custom-btn-PasteInTriplemars');
-f.onmouseover = function() {
-    document.getElementById('PasteInTripleMarsPopup').style.display = 'block';
-}
-f.onmouseout = function() {
-    document.getElementById('PasteInTripleMarsPopup').style.display = 'none';
 }

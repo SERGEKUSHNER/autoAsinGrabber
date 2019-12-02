@@ -1307,9 +1307,11 @@ a.ant-btn-sm {
     background-color: white;
     color: #0070ba;
 }
+
 .showIf {
     display: inline-block;
 }
+
 .custom-btn:hover {
     border-color: #0070ba;
     background-color: #0070ba;
@@ -1488,6 +1490,10 @@ a.ant-btn-sm {
     padding: 0 !important;
 }
 
+.card-footer {
+    padding: 0.45rem 1.25rem !important;
+}
+
 span.icon {
     font-family: FontAwesome;
 }
@@ -1497,7 +1503,62 @@ span.icon {
     margin-bottom: auto;
 }
 
-
 .clickable-icon {
     cursor: pointer;
+}
+
+.margin-top-5 {
+    margin-top: 5px;
+}
+
+.popover__wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.popover__content, .popover__content2 {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: -35px;
+    left: -65px;
+    transform: translate(0, 10px);
+    background-color: #bfbfbf;
+    padding: 10px 30px 0 30px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+
+    .popover__content:before, .popover__content2:before {
+        position: absolute;
+        z-index: -1;
+        content: "";
+        right: calc(50% - 10px);
+        bottom: -8px;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent #bfbfbf transparent;
+        transition-duration: 0.3s;
+        transition-property: transform;
+        transform: rotate(180deg)
+    }
+
+.custom-btn-GetherIds:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+.custom-btn-PasteInTriplemars:hover .popover__content2 {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+.popover__message {
+    text-align: center;
 }

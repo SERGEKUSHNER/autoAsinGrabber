@@ -1,7 +1,7 @@
 {
-  "name": "Auto ASIN Grabber",
+  "name": "Triplemars Explorer",
   "version": "1.0",
-  "description": "Auto ASIN Grabber!",
+  "description": "Triplemars Explorer!",
   "permissions": [ "declarativeContent", "storage", "activeTab", "<all_urls>" ],
   "background": {
     "scripts": [ "background.js", "event_script.js" ],
@@ -28,14 +28,14 @@
     "48": "images/get_started48.png",
     "128": "images/get_started128.png"
   },
-  "commands" : {
-    "GetItems" : {
-      "suggested_key" : {"default" : "Alt+1"},
-      "description" : "Get Items"
+  "commands": {
+    "GetItems": {
+      "suggested_key": { "default": "Alt+1" },
+      "description": "Get Items"
     },
-    "PasteItems" : {
-      "suggested_key" : {"default" : "Alt+2"},
-      "description" : "Paste Items"
+    "PasteItems": {
+      "suggested_key": { "default": "Alt+2" },
+      "description": "Paste Items"
     }
   },
 
