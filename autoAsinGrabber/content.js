@@ -30,6 +30,10 @@ function getIds() {
   // Black Friday
   var bfAsins = getIdsBySelector("div.dealDetailContainer");
   asins = asins.concat(bfAsins);
+
+  // Cupons
+  var cuponsAsins = getIdsBySelector("#merchandised-content");
+  asins = asins.concat(cuponsAsins);
   return asins;
 }
 

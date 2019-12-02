@@ -1497,9 +1497,6 @@ span.icon {
     margin-bottom: auto;
 }
 
-.ant-collapse-item:nth-child(2n) {
-    background-color: lightgrey;
-}
 
 .clickable-icon {
     cursor: pointer;
