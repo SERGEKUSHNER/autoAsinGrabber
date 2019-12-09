@@ -1562,3 +1562,5 @@ span.icon {
 .popover__message {
     text-align: center;
 }
+.custom-btn-GetherIds:focus {outline:0;}
+.custom-btn-PasteInTriplemars:focus {outline:0;}
