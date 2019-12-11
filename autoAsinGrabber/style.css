@@ -1564,3 +1564,12 @@ span.icon {
 }
 .custom-btn-GetherIds:focus {outline:0;}
 .custom-btn-PasteInTriplemars:focus {outline:0;}
+.nonSelectable {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+
