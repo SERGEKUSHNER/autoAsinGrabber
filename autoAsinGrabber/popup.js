@@ -93,16 +93,16 @@ function addItem(item, index) {
   list_container.innerHTML +=
     `<div class="ant-collapse-item">
              <div class="row">
-               <div class="col-2">
+               <div class="col-2 nonSelectable">
                   ` + (EXP_index + 1) + `
                 </div>
                 <div class="col-5"><a href="https://www.amazon.com/item/dp/` + item + `" target="_blank">
                    ` + item + `
                 </a></div>
-                 <div class="col-3">
+                 <div class="col-3 nonSelectable">
                     <img src="http://images.amazon.com/images/P/` + item + `.01.20TTZZZZ.jpg"  height="42" width="42">
                 </div>
-                <div class="col-2" id="x` + index + `">
+                <div class="col-2 nonSelectable" id="x` + index + `">
                      <i class="fa fa-times clickable-icon"></i>   
                 </div>
          </div>   
